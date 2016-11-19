@@ -1,0 +1,1 @@
+INSERT INTO T_ROLE VALUES(1,'admin')
