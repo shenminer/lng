@@ -21,5 +21,5 @@ public interface IAccountService extends ICurdServiceSupport<Account> {
 
     int createAccount(Account account);
 
-
+    void changePassword(Account account);
 }

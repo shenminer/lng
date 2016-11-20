@@ -2,6 +2,7 @@ package cn.edu.hdu.lab505.innovation.service;
 
 import cn.edu.hdu.lab505.innovation.common.ICurdServiceSupport;
 import cn.edu.hdu.lab505.innovation.domain.domain.Product;
+import cn.edu.hdu.lab505.innovation.service.Exception.ImeiNotFoundException;
 
 import java.util.List;
 
@@ -10,7 +11,9 @@ import java.util.List;
  */
 public interface IProductService extends ICurdServiceSupport<Product> {
 
-    void  updateIgnoreImei(Product product);
+    void updateIgnoreImei(Product product);
 
     List<Product> findByAccountId(int id);
+
+    void addSensorData(int imei, float[] arrays) throws ImeiNotFoundException;
 }

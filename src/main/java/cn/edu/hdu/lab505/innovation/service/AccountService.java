@@ -4,6 +4,7 @@ import cn.edu.hdu.lab505.innovation.common.AbstractCurdServiceSupport;
 import cn.edu.hdu.lab505.innovation.common.ICurdDaoSupport;
 import cn.edu.hdu.lab505.innovation.dao.IAccountDao;
 import cn.edu.hdu.lab505.innovation.domain.domain.Account;
+import cn.edu.hdu.lab505.innovation.domain.domain.Role;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.Element;
 import org.apache.commons.codec.binary.Base64;
@@ -17,6 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.security.auth.login.AccountNotFoundException;
 import javax.security.auth.login.CredentialExpiredException;
 import javax.security.auth.login.FailedLoginException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -36,6 +40,7 @@ public class AccountService extends AbstractCurdServiceSupport<Account> implemen
         return accountDao;
     }
 
+    @Override
     @Transactional
     public String login(String account, String password) throws AccountNotFoundException, FailedLoginException {
         Account a = accountDao.getByAccount(account);
@@ -53,6 +58,7 @@ public class AccountService extends AbstractCurdServiceSupport<Account> implemen
         return token;
     }
 
+    @Override
     public void logout(String token) {
         Element et = tokenCache.get(token);
         if (et != null) {
@@ -61,15 +67,36 @@ public class AccountService extends AbstractCurdServiceSupport<Account> implemen
         }
     }
 
+    @Override
     @Transactional
     public void updateIgnorePassword(Account entity) {
         Account origin = get(entity.getId());
+        origin.setName(entity.getName());
+        origin.setType(entity.getType());
+        origin.setAddress(entity.getAddress());
+        origin.setCenter(entity.getCenter());
         origin.setContact(entity.getContact());
-        origin.setUsername(entity.getUsername());
-        origin.setRoleList(entity.getRoleList());
+        origin.setContractUnitPrice(entity.getContractUnitPrice());
+        origin.setDeliveryMethod(entity.getDeliveryMethod());
+        origin.setEarlyWarningThreshold(entity.getEarlyWarningThreshold());
+        origin.setIndustry(entity.getIndustry());
+        origin.setInvestmentMethod(entity.getInvestmentMethod());
+        origin.setInvestmentScale(entity.getInvestmentScale());
+        origin.setProgress(entity.getProgress());
+        origin.setLinkman(entity.getLinkman());
+        origin.setRegion(entity.getRegion());
+        origin.setRemark(entity.getRemark());
+        origin.setSalesman(entity.getSalesman());
+        origin.setUnit(entity.getUnit());
+        origin.setStatus(entity.getStatus());
+        origin.setSignedClient(entity.getSignedClient());
+        origin.setShortName(entity.getShortName());
+        origin.setSettlementMode(entity.getSettlementMode());
+
         update(origin);
     }
 
+    @Override
     public Account getAccountInfo(String token) throws CredentialExpiredException {
         Element et = tokenCache.get(token);
         LOGGER.debug("================" + token);
@@ -79,14 +106,27 @@ public class AccountService extends AbstractCurdServiceSupport<Account> implemen
         return (Account) et.getObjectValue();
     }
 
+    @Override
     @Transactional
     public int createAccount(Account a) {
         try {
+            a.setOperationTime(new Date());
             accountDao.insert(a);
+            List<Role> list = new ArrayList<>();
+            list.add(new Role(2));
+            a.setRoleList(list);
             return a.getId();
         } catch (DataIntegrityViolationException e) {
             throw new DuplicateKeyException(a.getUsername() + " duplicate");
         }
+    }
+
+    @Override
+    @Transactional
+    public void changePassword(Account entity) {
+        Account origin = get(entity.getId());
+        origin.setPassword(entity.getPassword());
+        update(origin);
     }
 
     public IAccountDao getAccountDao() {

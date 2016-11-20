@@ -4,6 +4,7 @@ import cn.edu.hdu.lab505.innovation.domain.domain.Account;
 import cn.edu.hdu.lab505.innovation.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.security.auth.login.CredentialExpiredException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -17,6 +18,12 @@ import java.util.List;
 public class AccountCtrl {
     @Autowired
     private IAccountService accountService;
+
+    @PUT
+    @Path("/update")
+    public void updateAccount(Account account) {
+        accountService.updateIgnorePassword(account);
+    }
 
     @POST
     @Path("create")

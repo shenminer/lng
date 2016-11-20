@@ -14,4 +14,8 @@ public interface IDocumentDao extends DAO<Document, ObjectId> {
     Document findLatestByProductId(int productId);
 
     List<Document> findByProductIdLimit(int productId, long start, long limit);
+
+    void update(Document document, float[] arrays);
+
+    void add(int pid, float[] arrays);
 }

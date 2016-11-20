@@ -7,6 +7,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.query.UpdateOperations;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -32,7 +34,12 @@ public class DocumentDaoTest {
     @Rollback(false)
     public void testAdd() {
 
-        List<Document> list = documentDao.findByProductIdLimit(2, 1479562587835L, 1479562632969L);
-        System.out.println("==========" + list.size());
+       Document d = documentDao.findLatestByProductId(1);
+       // Sensor s1=d.getS1();
+      //  s1.add(new Data(11,33f));
+        Datastore datastore=documentDao.getDatastore();
+        UpdateOperations ops = datastore.createUpdateOperations(Document.class).add("S1.dataList",new Data(12,4f));
+        datastore.update(d,ops);
+        System.out.println("==========" );
     }
 }

@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Created by hhx on 2016/11/19.
  */
 @Entity
-@Table(name = "t_product",indexes = {@Index(columnList = "id")})
+@Table(name = "t_product", indexes = {@Index(columnList = "id,imei")})
 public class Product implements Serializable {
     @Id
     @GeneratedValue

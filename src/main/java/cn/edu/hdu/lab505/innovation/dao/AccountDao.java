@@ -11,6 +11,7 @@ import java.util.List;
  */
 @Repository
 public class AccountDao extends AbstractHibernateCurdDaoSupport<Account> implements IAccountDao {
+    @Override
     public Account getByAccount(String username) {
         List<Account> list = getHibernateTemplate().findByExample(new Account(username, null));
         if (list.isEmpty()) {

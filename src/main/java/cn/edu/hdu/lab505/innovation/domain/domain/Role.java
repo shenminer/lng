@@ -1,5 +1,7 @@
 package cn.edu.hdu.lab505.innovation.domain.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,12 +14,25 @@ import java.util.List;
 @Table(name = "t_role")
 public class Role implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue()
     private int id;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
     @ManyToMany(mappedBy = "roleList")
+    @JsonIgnore
     private List<Account> accountList = new ArrayList<Account>();
+
+    public Role(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Role(int id) {
+        this.id = id;
+    }
+
+    public Role() {
+    }
 
     public int getId() {
         return id;

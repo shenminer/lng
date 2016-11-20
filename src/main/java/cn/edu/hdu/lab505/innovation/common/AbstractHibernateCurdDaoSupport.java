@@ -1,16 +1,6 @@
 package cn.edu.hdu.lab505.innovation.common;
 
-import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projection;
@@ -19,6 +9,12 @@ import org.hibernate.internal.CriteriaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
+
+import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -46,41 +42,42 @@ public abstract class AbstractHibernateCurdDaoSupport<T> extends
         this.entityClass = (Class<T>) trueType;
     }
 
-
+    @Override
     public T get(Serializable id) {
         return (T) getHibernateTemplate().get(entityClass, id);
     }
 
-
+    @Override
     public void insert(T entity) {
         getHibernateTemplate().save(entity);
     }
 
-
+    @Override
     public void update(T entity) {
         getHibernateTemplate().update(entity);
     }
 
-
+    @Override
     public void merge(T entity) {
         getHibernateTemplate().merge(entity);
     }
 
+    @Override
     public void saveOrUpdate(T entity) {
         getHibernateTemplate().saveOrUpdate(entity);
     }
 
-
+    @Override
     public void delete(T entity) {
         getHibernateTemplate().delete(entity);
     }
 
-
+    @Override
     public List<T> findAll() {
         return (List<T>) getHibernateTemplate().loadAll(entityClass);
     }
 
-
+    @Override
     public Long getCount(final DetachedCriteria detachedCriteria) {
         return getHibernateTemplate().executeWithNativeSession(new HibernateCallback<Long>() {
             public Long doInHibernate(Session session) throws HibernateException {
@@ -98,17 +95,18 @@ public abstract class AbstractHibernateCurdDaoSupport<T> extends
         });
     }
 
+    @Override
     public Long getCount() {
         final DetachedCriteria dc = DetachedCriteria.forClass(entityClass);
         return getCount(dc);
     }
 
-
+    @Override
     public List<T> find(final DetachedCriteria detachedCriteria) {
         return (List<T>) getHibernateTemplate().findByCriteria(detachedCriteria);
     }
 
-
+    @Override
     public Page<T> findPage(final DetachedCriteria detachedCriteria, final int start, final int limit) {
         Page<T> page = new Page<T>();
         Long totalCount = getCount(detachedCriteria);
@@ -121,11 +119,13 @@ public abstract class AbstractHibernateCurdDaoSupport<T> extends
         return page;
     }
 
+    @Override
     public Page<T> findPage(final int start, final int limit) {
         final DetachedCriteria dc = DetachedCriteria.forClass(entityClass);
         return findPage(dc, start, limit);
     }
 
+    @Override
     // 执行插入，更新或删除SQL
     public int bulkUpdateBySQL(final String sql, final Object... params) {
         return getHibernateTemplate().executeWithNativeSession(new HibernateCallback<Integer>() {
@@ -142,6 +142,7 @@ public abstract class AbstractHibernateCurdDaoSupport<T> extends
         });
     }
 
+    @Override
     //执行查询SQL
     public List findBySQL(final String sql, final Object... params) {
         return getHibernateTemplate().executeWithNativeSession(new HibernateCallback<List>() {

@@ -16,7 +16,7 @@ repositories {
 apply plugin: 'war'
 apply plugin: 'org.akhikhl.gretty'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
 
 gretty {
     port = 8090
@@ -25,9 +25,9 @@ gretty {
     debugSuspend = true   // default
     servletContainer = 'jetty9'
 }
-[compileJava,compileTestJava,javadoc]*.options*.encoding = "UTF-8"
+[compileJava, compileTestJava, javadoc]*.options*.encoding = "UTF-8"
 
-ext{
+ext {
     hibernateVersion = '4.3.1.Final'
     springVersion = '4.2.1.RELEASE'
     jerseyVersion = '2.22.1'
@@ -39,7 +39,7 @@ dependencies {
     compile 'commons-beanutils:commons-beanutils:1.9.2'
     compile 'commons-codec:commons-codec:1.10'
     compile 'log4j:log4j:1.2.17'
-    compile 'hsqldb:hsqldb:1.8.0.10'
+    compile group: 'org.hsqldb', name: 'hsqldb', version: '2.3.3'
     compile "org.hibernate:hibernate-core:${hibernateVersion}"
     compile "org.hibernate:hibernate-ehcache:${hibernateVersion}"
     compile "org.hibernate:hibernate-tools:${hibernateVersion}"

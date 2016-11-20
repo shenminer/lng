@@ -84,34 +84,35 @@
     </bean>
 
     <!-- shiro filter -->
-    <!--	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-            <property name="securityManager" ref="securityManager"/>
-            <property name="loginUrl" value="/restapi/account/login"/>
-            <property name="filters">
-                <util:map>
-                    <entry key="statelessAuthc" value-ref="statelessAuthcFilter"/>
-                </util:map>
-            </property>
-            <property name="filterChainDefinitions">
-                <value>
-                    /restapi/account/** = anon
-                    /admin/** = statelessAuthc,roles[admin]
-                    /** = statelessAuthc
-                </value>
-            </property>
-        </bean>
-        <bean id="statelessRealm" class="org.apache.shiro.realm.StatelessRealm">
-            <property name="tokenCache" ref="tokenCache"></property>
-        </bean>
-        <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-            <property name="realm" ref="statelessRealm"></property>
-            <property name="subjectDAO.sessionStorageEvaluator.sessionStorageEnabled" value="false"/>
-            <property name="subjectFactory" ref="subjectFactory"/>
-        </bean>-->
-    <!-- Subject工厂 -->
-    <!--<bean id="subjectFactory" class="org.apache.shiro.StatelessDefaultSubjectFactory"/>
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/restapi/account/login"/>
+        <property name="filters">
+            <util:map>
+                <entry key="statelessAuthc" value-ref="statelessAuthcFilter"/>
+            </util:map>
+        </property>
+        <property name="filterChainDefinitions">
+            <value>
+                /restapi/account/**/update = statelessAuthc
+                /restapi/account/** = anon
+                /admin/** = statelessAuthc,roles[admin]
+                /** = statelessAuthc
+            </value>
+        </property>
+    </bean>
+    <bean id="statelessRealm" class="org.apache.shiro.realm.StatelessRealm">
+        <property name="tokenCache" ref="tokenCache"></property>
+    </bean>
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="statelessRealm"></property>
+        <property name="subjectDAO.sessionStorageEvaluator.sessionStorageEnabled" value="false"/>
+        <property name="subjectFactory" ref="subjectFactory"/>
+    </bean>
+    <!-- Subject工厂-->
+    <bean id="subjectFactory" class="org.apache.shiro.StatelessDefaultSubjectFactory"/>
     <bean id="statelessAuthcFilter" class="org.apache.shiro.web.filter.authc.StatelessFilter">
-    </bean>-->
+    </bean>
 
     <!-- Morphia-->
     <bean id="morphia" class="org.mongodb.morphia.Morphia">

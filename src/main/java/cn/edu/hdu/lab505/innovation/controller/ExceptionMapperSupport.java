@@ -1,6 +1,8 @@
 package cn.edu.hdu.lab505.innovation.controller;
 
 import org.apache.log4j.Logger;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DuplicateKeyException;
 
 import javax.security.auth.login.LoginException;
 import javax.ws.rs.NotFoundException;
@@ -23,6 +25,9 @@ public class ExceptionMapperSupport implements ExceptionMapper<Exception> {
         // 处理unchecked exception
         if (exception instanceof LoginException) {
             statusCode = Status.UNAUTHORIZED;
+            message = exception.getMessage();
+        } else if (exception instanceof DuplicateKeyException) {
+            statusCode = Status.CONFLICT;
             message = exception.getMessage();
         } else if (exception instanceof NotFoundException) {
             statusCode = Status.NOT_FOUND;

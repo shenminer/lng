@@ -2,13 +2,13 @@ package cn.edu.hdu.lab505.innovation.controller.user;
 
 import cn.edu.hdu.lab505.innovation.domain.domain.Account;
 import cn.edu.hdu.lab505.innovation.service.IAccountService;
-import org.apache.shiro.web.filter.authc.StatelessToken;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.security.auth.login.AccountNotFoundException;
 import javax.security.auth.login.CredentialExpiredException;
 import javax.security.auth.login.FailedLoginException;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -23,9 +23,9 @@ public class AccountCtrl {
 
     @POST
     @Path("login")
-    public StatelessToken login(Account account) throws AccountNotFoundException, FailedLoginException {
-        String token = accountService.login(account.getUsername(), account.getPassword());
-        return new StatelessToken(token);
+    public String login(Account account) throws AccountNotFoundException, FailedLoginException {
+        return accountService.login(account.getUsername(), account.getPassword());
+
     }
 
     @GET
@@ -42,9 +42,12 @@ public class AccountCtrl {
     }
 
     @PUT
-    @Path("/{id:\\d+}/update")
-    public void updateAccount(Account account, @PathParam("id") int id) {
-        account.setId(id);
-        accountService.updateIgnorePassword(account);
+    @Path("/changePassword")
+    public void changePassword(@HeaderParam("token") String token, Account account) throws CredentialExpiredException {
+        Account a = accountService.getAccountInfo(token);
+        if (a.getId() != account.getId()) {
+            throw new CredentialExpiredException();
+        }
+        accountService.changePassword(account);
     }
 }
