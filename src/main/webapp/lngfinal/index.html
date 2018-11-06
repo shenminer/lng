@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><!-- //viewport虚拟窗口，自动适应屏幕大小 -->
+
+
+    <title>lng</title>
+    <!--<link rel="stylesheet" href="css/custom.css">-->
+    <!--顶部样式-->
+    <link rel="stylesheet" href="css/commom.css">
+    <!--侧边栏样式-->
+    <link rel="stylesheet" href="css/aside.css">
+    <!--主体部分左右布局样式-->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!--标准样式-->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <!--主体的右半边动态样式-->
+    <link rel="stylesheet" href="css/bootstrap-addtabs.css" type="text/css" media="screen"/>
+    <!--主体的右半边排版-->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="css/right.css">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!--主体的右半边动态功能-->
+    <script src="js/bootstrap-addtabs.js"></script>
+    <script src="js/right.js"></script>
+    <script src="js/jquerySession.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/nav.js"></script>
+</head>
+<body>
+<header class="main-header">
+    <div class="navbar-custom-menu">
+        <ul class="nav nav-pills" role="tablist" id="mynav">
+            <li role="presentation">
+                <a href="##" class="list-group-item-active" style="color: #ffffff"><span class="glyphicon glyphicon-ban-circle"></span>
+                    <span class="badge" >30</span>
+                </a>
+            </li>
+
+            &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+
+            <li role="presentation">
+                <a href="##" class="list-group-item-active" style="color: #ffffff"><span class="glyphicon glyphicon-warning-sign"></span>
+                    <span class="badge alert-danger" >30</span>
+                </a>
+            </li>
+
+            &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+
+            <li role="presentation">
+                <a href="##" class="list-group-item-active" style="color: #ffffff">AC
+                    <span class="badge alert-warning" >30</span>
+                </a>
+            </li>
+
+            &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+
+            <li role="presentation">
+                <a href="##" class="aa" style="color: #ffffff"><span class="glyphicon glyphicon-bell"></span> </a>
+            </li>
+
+            <a class="dropdown">
+                    <a class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="color: #419641 width:40px height:100%">
+                        <img src="images/avatar.png" height="25" width="25" class="user-image">
+                        <a href="##" class="bb" style="color: #ffffff"></a>
+                        <span class="hidden-xs">姓名</span>
+                    </a>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li class="user-footer" >
+                        <a id="changePassword" data-user-id="ee1a34d5-fde1-4d23-b177-889e179943a0" class="btn btn-default btn-flat" data-toggle="modal" data-target="#mymodal1">修改密码</a>
+                    </li>
+                    <li class="user-footer">
+                        <a href="login.html" class="btn btn-default btn-flat">退出登录</a>
+                    </li>
+                </ul>
+                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                <li role="presentation">
+                    <a href="##" class="cc" style="color: #ffffff"><span class="glyphicon glyphicon-cog"></span> </a>
+                </li>
+            </a>
+    </div>
+     <div class="modal fade" id="mymodal1">
+        <div class="modal-dialog">
+            <div class="modal-content changepsd col-lg-12">
+              <div class="modal-header">
+                 <h5><b>修改密码</b></h5>
+             </div>
+             <div class="modal-body">
+                 <form class="form-group">
+                   <div class="form-group pull-left col-sm-12">
+                    <label class="pull-left">用户id</label>
+                    <input type="text" class="form-control" id="userid" >
+                   </div>
+                   <div class="form-group pull-left col-sm-12">
+                    <label class="pull-left">新密码</label>
+                    <input type="text" class="form-control" id="newpassword" placeholder="请输入新密码" >
+                   </div>
+                 </form>
+             </div>
+             <div class="modal-footer">
+             <button class="btn" data-dismiss="modal">关闭</button>
+             <button class="confirm btn" onclick="confirm()">确定</button>
+            </div>
+        </div>
+   </div>
+</header>
+<div class="asidebar">
+    <div class="topbar-collapse">
+        <!--Button group-->
+        <div class="haschild">
+                 <span>
+                     <i class="glyphicon glyphicon-cog"></i>系统管理
+                     <span id="tubiao"class="glyphicon glyphicon-chevron-left"></span>
+                 </span>
+            <a data-addtab="bumen" url="#">部门管理</a>
+            <a data-addtab="yonghu" url="#">用户管理</a>
+            <a data-addtab="juese" href="#">角色管理</a>
+            <a data-addtab="mokuai" href="#">模块管理</a>
+            <a data-addtab="caidan" href="#">菜单管理</a>
+            <a data-addtab="tubiao" href="#">图标管理</a>
+            <a data-addtab="rizhi" href="#">日志管理</a>
+
+        </div>
+
+        <div class="haschild"> 
+                 <span>
+                     <i class="glyphicon glyphicon-list"></i> 基础信息
+                     <span id="tubiao" class="glyphicon glyphicon-chevron-left"></span>
+                 </span>
+            <a data-addtab="xinxi" url="productinfo.html">产品信息</a>
+            <a data-addtab="guige" url="#">产品规格</a>
+            <a data-addtab="canshu" url="#">预警报警参数</a>
+            <a data-addtab="gongyingshang" url="#">气源供应商</a>
+            <a data-addtab="caigoujia" url="#">气源采购价</a>
+            <a data-addtab="wuliu" url="#">物流公司</a>
+            <a data-addtab="cheliang" url="#">车辆管理</a>
+            <a data-addtab="fuwuqi" url="#">服务器管理</a>
+            <a data-addtab="dangan" url="#">档案信息</a>
+
+        </div>
+
+        <div class="haschild">
+                 <span>
+                     <i class="glyphicon glyphicon-user"></i> 客服管理
+                     <span id="tubiao"class="glyphicon glyphicon-chevron-left"></span>
+                 </span>
+            <a data-addtab="kehu" url="custominfo.html">客户信息</a>
+            <a data-addtab="hetong" url="#">合同信息</a>
+            <a data-addtab="fankui" url="#">反馈信息</a>
+            <a data-addtab="yucunkuan" url="#">预存款管理</a>
+            <a data-addtab="jiance" url="#">产品检测管理</a>
+            <a data-addtab="xiuli" url="#">产品修理管理</a>
+
+        </div>
+
+        <div class="haschild"> 
+                 <span>
+                     <i class="glyphicon glyphicon-envelope"></i>运营信息
+                     <span id="tubiao" class="glyphicon glyphicon-chevron-left"></span>
+                 </span>
+            <a data-addtab="b1" url="productruninfo.html">产品运行信息</a>
+            <a data-addtab="b2" url="#"></i>槽车运行信息</a>
+            <a data-addtab="b3" href="#">中心站交收管理</a>
+            <a data-addtab="b4" href="#">电厂交收管理</a>
+            <a data-addtab="b5" href="#">配送车交收管理</a>
+            <a data-addtab="b6" href="#">运行统计</a>
+            <a data-addtab="b7" href="#">调度计划管理</a>
+        </div>
+        <div class="haschild"> 
+                 <span>
+                     <i class="glyphicon glyphicon-modal-window"></i> 财务管理
+                     <span id="tubiao" class="glyphicon glyphicon-chevron-left"></span>
+                 </span>
+            <a data-addtab="c1" href="#">税率参数</a>
+            <a data-addtab="c2" href="#">测算管理</a>
+            <a data-addtab="c3" href="#">核算管理</a>
+        </div>
+
+        <div class="haschild">
+                 <span>
+                     <i class="glyphicon glyphicon-baby-formula"></i> 统计报表
+                     <span id="tubiao" class="glyphicon glyphicon-chevron-left"></span>
+                 </span>
+            <a data-addtab="d1" href="#">销售管理</a>
+            <a data-addtab="d2" href="#">销售量数据管理</a>
+            <a data-addtab="d3" href="#">销售量对账管理</a>
+            <a data-addtab="d4" href="#">销售量统计</a>
+            <a data-addtab="d5" href="#">销售量汇总</a>
+        </div>
+
+    </div>
+    <div class="main">
+        <div id="tabs">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs navbar-inverse" role="tablist">
+                <li role="presentation" class="active">
+                    <a url="home.html" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                </div>
+            </div>
+        </div>
+
+     <!--    <div class="">
+            <br><br>
+            <div class="row-fluid">
+                <div class="span3 responsive" data-tablet="span6" data-desktop="span3">
+                    <div class="dashboard-stat blue">
+                        <div class="visual">
+                            <i class="icon-comments"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">数字</div>
+                            <div class="desc">数字</div>
+                        </div>
+                        <div class="more" href="#">
+                            数字
+                            <i class="m-icon-swapright m-icon-white"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class=" span3 responsive" data-tablet="span6" data-desktop="span3">
+                    <div class="dashboard-stat green">
+                        <div class="visual">
+                            <i class="icon-shopping-cart"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">数字</div>
+                            <div class="desc">数字</div>
+                        </div>
+                        <div class="more" href="#">
+                            数字
+                            <i class="m-icon-swapright m-icon-white"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class=" span3 responsive" data-tablet="span6" data-desktop="span3">
+                    <div class="dashboard-stat purple">
+                        <div class="visual">
+                            <i class="icon-globe"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">数字</div>
+                            <div class="desc">数字</div>
+                        </div>
+                        <div class="more" href="#">
+                            数字
+                            <i class="m-icon-swapright m-icon-white"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class=" span3 responsive" data-tablet="span6" data-desktop="span3">
+                    <div class="dashboard-stat yellow">
+                        <div class="visual">
+                            <i class="icon-bar-chart"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">数字</div>
+                            <div class="desc">数字</div>
+                        </div>
+                        <div class="more" href="#">
+                            数字
+                            <i class="m-icon-swapright m-icon-white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="left">
+                    <div class="">
+                        <hr>
+                        <p>产品流量统计图</p>
+                        <ul class="nav nav-pills" id="mynav" role="tablist">
+                            <li role="presentation" class="active"><a href="#">本周</a></li>
+                            <li role="presentation"><a href="#">本月</a></li>
+                            <li role="presentation"><a href="#">本季</a></li>
+                            <li role="presentation"><a href="#">本年</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="container">
+                        <hr>
+                        <h2>用量排行榜</h2>
+                        <div class="">
+                            <ul class="nav nav-pills" id="mynav" role="tablist">
+                                <li role="presentation" class="active"><a href="#">昨日</a></li>
+                                <li role="presentation"><a href="#">近一周</a></li>
+                                <li role="presentation"><a href="#">近一月</a></li>
+                            </ul>
+                        </div>
+                        <br>
+
+                        <p>浙江众华家纺783</p>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success  progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                <div class="sr-only">80%</div>
+                            </div>
+                        </div>
+
+                        <p>浙江华港染织783</p>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+                                <div class="sr-only">70%</div>
+                            </div>
+                        </div>
+
+                        <p>余姚铭泰</p>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                <div class="sr-only">60%</div>
+                            </div>
+                        </div>
+
+                        <p>奉化通达</p>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                <div class="sr-only">40%</div>
+                            </div>
+                        </div>
+
+                        <p>慈溪久发</p>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
+                                <div class="sr-only">15%</div>
+                            </div>
+                        </div>
+
+                        <p>奉化诺克</p>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+                                <div class="sr-only">10%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div> -->
+    </div>
+
+    <script>
+        $("#mynav a").click(function(e){
+            $(this).tab("show");
+        })
+    </script>
+
+
+</div>
+</html>

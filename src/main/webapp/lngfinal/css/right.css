@@ -1,0 +1,18 @@
+.left
+{
+    width: 60%;
+    float: left;
+    overflow: hidden;
+}
+.right
+{
+}
+.container
+{
+    width:30%;
+    float: right;
+}
+.container p
+{
+    line-height: 1px;
+}
